@@ -1,59 +1,12 @@
-<? I18N znc-log ?>
 <? INC Header.tmpl ?>
 
-<h3><? FORMAT "Configuration" ?></h3>
-<div class="sectionbg">
-    <div class="sectionbody">
-        <form action="<? VAR ModPath TOP ?>" method="post">
-            <? INC _csrf_check.tmpl ?>
-            <h4><? FORMAT "Rules" ?></h4>
-            <div class="sectionbody" style="margin-bottom: 0.5em;">
-                <div class="subsection">
-                    <textarea name="rules"><? LOOP Rules ?><? VAR Rule ?>
-<? ENDLOOP ?></textarea>
-                    <br>
-                    <span class="info">
-                        <? FORMAT "Leave empty to clear all rules." ?><br>
-                        <? FORMAT "Otherwise, separate rules by lines or spaces." ?><br>
-                        <? FORMAT "Use !#chan or !query to negate the rule." ?><br>
-                        <? FORMAT "The wildcard * is available." ?>
-                    </span>
-                </div>
-            </div>
-            <h4><? FORMAT "Settings"?></h4>
-            <div class="sectionbody" style="margin-bottom: 0.5em;">
-                <div class="subsection">
-                    <label>
-                        <input type="checkbox" name="settings" value="joins" <? IF Joins ?>checked<? ENDIF ?>>
-                        <? FORMAT "Log joins" ?>
-                    </label>
-                </div>
-                <div class="subsection">
-                    <label>
-                        <input type="checkbox" name="settings" value="quits" <? IF Quits ?>checked<? ENDIF ?>>
-                        <? FORMAT "Log quits" ?>
-                    </label>
-                </div>
-                <div class="subsection">
-                    <label>
-                        <input type="checkbox" name="settings" value="nickchanges" <? IF NickChanges ?>checked<? ENDIF ?>>
-                        <? FORMAT "Log nick changes" ?>
-                    </label>
-                </div>
-            </div>
-            <div class="subsection">
-                <input type="submit" name="configuration" value="<? FORMAT "Save" ?>">
-            </div>
-        </form>
-    </div>
-</div>
+<div class="container col-md-10 col-md-offset-1">
+	<div class="panel panel-default">
 
 <? IF Module != "Global" ?>
     <? IF Files ?>
-        <h3><? FORMAT "Log Browser" ?></h3>
-        <div class="sectionbg">
-            <div class="sectionbody">
-                <div class="subsection">
+        <div class="panel-heading">Log Browser</div>
+            <div class="panel-body">
                     <? LOOP Files ?>
                         <form action="<? VAR ModPath TOP ?>" method="post">
                             <? INC _csrf_check.tmpl ?>
@@ -65,14 +18,11 @@
                             </label>
                         </form>
                     <? ENDLOOP ?>
-                </div>
-            </div>
         </div>
     <? ENDIF ?>
     <? IF Log ?>
-        <h3><? FORMAT "Log Viewer" ?> (<? FORMAT "Page" ?> <? VAR Page ?>)</h3>
-        <div class="sectionbg">
-            <div class="sectionbody">
+        <div class="panel-heading"><? FORMAT "Log Viewer" ?> (<? FORMAT "Page" ?> <? VAR Page ?>)</div>
+        <div class="panel-body">
                 <code style="display: block; margin-bottom: 1em;">
                     <? LOOP Log ?>
                         <? VAR Line ?><br>
