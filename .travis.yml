@@ -45,7 +45,7 @@ matrix:
             - secure: "ne14MIcNsUNKjqtgrLHJTHXCUUMKfkV/o4sm2scWYOiIl8s1Hoqnx6mPYIr8qnedIra8fsI7sWVxXLDLd/KMTN9v9WpCwc6Sf45vYtkfrS+rNOr86wOeEbgaxDTsb2UDJhtK0InhhpkipA5jrFzQuMMMEB+JgBQltKV43wmd7Yc="
           before_install:
           install:
-            - if [[ "$TRAVIS_REPO_SLUG" == "znc/znc" && "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]]; then ATTEMPT_DEPLOY=yes; else ATTEMPT_DEPLOY=no; fi
+            - if [[ "$TRAVIS_REPO_SLUG" == "Scooter-It/znc" && "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]]; then ATTEMPT_DEPLOY=yes; else ATTEMPT_DEPLOY=no; fi
             - if [[ "$ATTEMPT_DEPLOY" == "yes" ]]; then openssl aes-256-cbc -d -salt -pbkdf2 -in .travis-github.enc -out ~/znc-github-key -k ${SECRET_KEY}; fi
             - export SECRET_KEY=no
             - if [[ "$ATTEMPT_DEPLOY" == "yes" ]]; then sudo apt-get update; fi
@@ -56,8 +56,8 @@ matrix:
                       mkdir -p ~/.ssh
                       chmod 0600 ~/znc-github-key
                       cp .travis.ssh ~/.ssh/config
-                      git config --global user.email "travis-ci@znc.in"
-                      git config --global user.name "znc-travis"
+                      git config --global user.email "travis@scotts.cc"
+                      git config --global user.name "Scott's-travis"
                   fi
             - if [[ "$ATTEMPT_DEPLOY" == "yes" ]]; then ./.travis-generate-docs.sh; fi
             - if [[ "$ATTEMPT_DEPLOY" == "yes" ]]; then ./.travis-coverity-scan.py; fi
